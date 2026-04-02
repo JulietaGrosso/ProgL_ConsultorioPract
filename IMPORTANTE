@@ -2,3 +2,6 @@ para conectarte a cosas de tu compu (por ej, mysql) en lugar de localhost o 127.
 host.docker.internal
 
 ej: host.docker.internal:3306
+
+comando:
+docker-compose up --build
