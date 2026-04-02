@@ -1,0 +1,4 @@
+para conectarte a cosas de tu compu (por ej, mysql) en lugar de localhost o 127.0.0.1 usarias:
+host.docker.internal
+
+ej: host.docker.internal:3306
