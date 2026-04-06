@@ -47,7 +47,7 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
           while (rs.next()){
             Turno turno = new Turno();
            
-            turno.setDia(rs.getDate("date"));
+            turno.setDia(rs.getDate("dia"));
             turno.setHora(rs.getTime("hora").toLocalTime());
             turno.setPaciente(rs.getInt("nro_paciente"));
             turno.setConsultorio(rs.getInt("nro_consultorio"));
