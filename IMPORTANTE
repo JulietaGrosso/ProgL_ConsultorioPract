@@ -5,3 +5,5 @@ ej: host.docker.internal:3306
 
 comando:
 docker-compose up --build
+
+
