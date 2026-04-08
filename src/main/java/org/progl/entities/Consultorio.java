@@ -3,6 +3,7 @@ package org.progl.entities;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Consultorio {
     private int nroConsultorio;
@@ -41,10 +42,22 @@ public class Consultorio {
     this.turnos = turnos;
   }
 
+  
 
   public void agregarTurno(String medico, Turno turnos){
     this.turnos.add(turnos);
   }
+
+
+  @Override
+  public String toString() {
+    return "{" +
+      " nroConsultorio='" + getNroConsultorio() + "'" +
+      ", medico='" + getMedico() + "'" +
+      ", turnos='" + getTurnos() + "'" +
+      "}";
+  }
+
 
 
 

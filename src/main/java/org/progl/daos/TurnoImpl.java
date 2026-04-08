@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import org.progl.entities.Consultorio;
@@ -18,10 +19,11 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
 
    private static final String SQL_INSERT=
       "INSERT INTO turno (id, dia, hora, nro_paciente, nro_consultorio) " +
-      "VALUES            (      ?,      ?,    ?,    ?,    ?);";
+      "VALUES            (      ?,      ?,    ?,    ?,    ?)";
 
 
      private static  final String  SQL_GETALL= "SELECT * FROM turno ORDER BY id" ;
+     
 
 
     @Override
@@ -69,6 +71,35 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
 
     }
 
+
+    @Override
+    public void insert(Turno turno) throws SQLException{
+      try(Connection conn = AdminConexiones.obtenerConexion(); //se puede crear la exception: try catch con recursos
+      PreparedStatement pst = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)){
+        
+        if(existsById(turno.getId())){
+          System.out.println("El Turno ya existe");
+          return;
+        }
+
+        pst.setString(1, turno.getDia().toString());
+        pst.setString(2,turno.getHora().toString());
+        
+        
+        int resultado = pst.executeUpdate();
+
+        if(resultado == 1){
+
+        }
+
+
+
+
+
+
+
+      }
+    }
 
 
   
