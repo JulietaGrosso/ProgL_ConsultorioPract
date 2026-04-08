@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.eclipse.tags.shaded.org.apache.xalan.xsltc.compiler.sym;
 import org.progl.entities.Consultorio;
 import org.progl.entities.Paciente;
 import org.progl.entities.Turno;
@@ -23,8 +24,8 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
 
 
      private static  final String  SQL_GETALL= "SELECT * FROM turno ORDER BY id" ;
-     
-
+     private static final String SQL_GETBYID = "SELECT * FROM turno WHERE id = ?";
+    
 
     @Override
     public List<Turno> getAll() {
@@ -89,17 +90,80 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
         int resultado = pst.executeUpdate();
 
         if(resultado == 1){
-
+          System.out.println("Turno agregado correctamente");
         }
 
-
-
-
-
-
-
+        try (ResultSet rs = pst.getGeneratedKeys()){
+          if(rs.next()){
+            turno.setId(rs.getInt(1));
+            System.out.println("ID asignado" + turno.getId());
+          }
+        } catch (SQLException e) {
+          System.out.println("Error al insertar turno" + e.getMessage());
+        }
       }
     }
+
+
+    @Override
+    public Turno getById(Integer id){
+        conn = AdminConexiones.obtenerConexion();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean existe = false;
+        Turno turno = null;
+
+        try {
+          pst = conn.prepareStatement(SQL_GETBYID);
+          pst.setInt(1, id);
+          rs = pst.executeQuery();
+          if(rs.next()){
+            turno = new Turno();
+            turno.setId(rs.getInt("id"));
+            turno.setDia(rs.getDate("dia"));
+            turno.setHora(rs.getTime("hora").toLocalTime());
+            turno.setPaciente(rs.getInt("id_paciente"));
+            turno.setConsultorio(rs.getInt("id_consultorio"));
+          }
+
+          rs.close();
+          pst.close();
+          conn.close();
+        } catch(SQLException e){
+          throw new RuntimeException(e);
+        }
+        return turno;
+
+    }
+
+
+    @Override
+    public boolean existsById(Integer id){
+      conn = AdminConexiones.obtenerConexion();
+      PreparedStatement pst = null;
+      ResultSet rs = null;
+      boolean existe = false;
+
+      try{
+          pst = conn.prepareStatement(SQL_GETBYID);
+          pst.setInt(1, id);
+          rs = pst.executeQuery();
+
+          if(rs.next()){
+            existe = true;
+          }
+          rs.close();
+          pst.close();
+          conn.close();
+      }catch(SQLException e){
+        throw new RuntimeException(e);
+      }
+
+      return existe;
+    }
+    
+
+
 
 
   
