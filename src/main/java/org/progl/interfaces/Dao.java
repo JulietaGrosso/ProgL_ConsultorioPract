@@ -7,7 +7,6 @@ public interface Dao <O,K> {
 // O objeto K key clave primaria
 
   public List<O> getAll();
-
   public void insert(O objeto) throws SQLException;
   public void delete(K id);
   public O getById(K id);

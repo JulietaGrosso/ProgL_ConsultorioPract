@@ -48,6 +48,17 @@ public class Consultorio {
     this.turnos.add(turnos);
   }
 
+  public void cancelarTurno(String medico, Turno turnos){
+    this.turnos.remove(turnos);
+  }
+
+  public boolean esMismoDia(Turno turno1, Turno turno2){
+    if (turno1.getDia().equals(turno2.getDia())){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   @Override
   public String toString() {

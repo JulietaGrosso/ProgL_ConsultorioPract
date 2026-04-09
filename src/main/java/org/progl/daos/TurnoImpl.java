@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.List;
 
 import org.eclipse.tags.shaded.org.apache.xalan.xsltc.compiler.sym;
@@ -29,7 +28,10 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
      private static  final String  SQL_GETALL= "SELECT * FROM turno ORDER BY id" ;
      private static final String SQL_GETBYID = "SELECT * FROM turno WHERE id = ?";
      private static final String SQL_DELETE = "DELETE * FROM turno WHERE id = ?";
-    private static final String SQL_UPDATE = "UPDATE turno SET " + "dia = ?, hora = ? "; 
+     
+    private static  final String  SQL_UPDATE= "UPDATE turno SET " +
+        "dia = ?, hora = ?, nro_paciente = ?, nro_consultorio = ? " +
+      "  WHERE id = ? " ;
 
     @Override
     public List<Turno> getAll() {
@@ -49,7 +51,7 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
         // paso 4 ejecutar consulta y guarda el resultado en resultset
         rs = pst.executeQuery();
 
-        // paso 5 recorrer el resultset y guardar las imágenes en una lista
+        // paso 5 recorrer el resultset y guardar 
 
           while (rs.next()){
             Turno turno = new Turno();

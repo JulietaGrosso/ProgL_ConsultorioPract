@@ -12,7 +12,18 @@ public class Paciente {
     this.telefono = telefono;
   }
 
-  
+  public Paciente(){
+
+  }
+
+  public int getNroPaciente() {
+    return this.nroPaciente;
+  }
+
+  public void setNroPaciente(int nroPaciente) {
+    this.nroPaciente = nroPaciente;
+  }
+
 
   public String getNombre() {
     return this.nombre;

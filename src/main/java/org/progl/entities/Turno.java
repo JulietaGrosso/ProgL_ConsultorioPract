@@ -1,7 +1,6 @@
 package org.progl.entities;
 
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.Date;
 
 public class Turno {
