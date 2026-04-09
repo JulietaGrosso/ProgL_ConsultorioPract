@@ -1,10 +1,13 @@
 package org.progl.daos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.eclipse.tags.shaded.org.apache.xalan.xsltc.compiler.sym;
@@ -25,7 +28,8 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
 
      private static  final String  SQL_GETALL= "SELECT * FROM turno ORDER BY id" ;
      private static final String SQL_GETBYID = "SELECT * FROM turno WHERE id = ?";
-    
+     private static final String SQL_DELETE = "DELETE * FROM turno WHERE id = ?";
+    private static final String SQL_UPDATE = "UPDATE turno SET " + "dia = ?, hora = ? "; 
 
     @Override
     public List<Turno> getAll() {
@@ -51,7 +55,7 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
             Turno turno = new Turno();
            
             turno.setDia(rs.getDate("dia"));
-            turno.setHora(rs.getTime("hora").toLocalTime());
+            turno.setHora(rs.getTime("hora"));
             turno.setPaciente(rs.getInt("nro_paciente"));
             turno.setConsultorio(rs.getInt("nro_consultorio"));
             listaTurnos.add(turno);
@@ -121,7 +125,7 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
             turno = new Turno();
             turno.setId(rs.getInt("id"));
             turno.setDia(rs.getDate("dia"));
-            turno.setHora(rs.getTime("hora").toLocalTime());
+            turno.setHora(rs.getTime("hora"));
             turno.setPaciente(rs.getInt("id_paciente"));
             turno.setConsultorio(rs.getInt("id_consultorio"));
           }
@@ -163,7 +167,62 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
     }
     
 
+    @Override
+    public void delete(Integer id){
+        Connection conn = AdminConexiones.obtenerConexion();
 
+        try{
+          PreparedStatement pst = conn.prepareStatement(SQL_DELETE);
+          pst.setInt(1, id);
+          int resultado = pst.executeUpdate();
+          if(resultado == 1){
+              System.out.println("Turno eliminado correctamente");
+          } else {
+            System.out.println("No se pudo eliminar el turno");
+          }
+          pst.close();
+          conn.close();
+        } catch(SQLException e){
+          System.out.println("No se pudo eliminar el turno. Error " + e.getMessage());
+        }
+        
+    }
+
+
+    @Override
+    public void update(Turno objeto){
+      Connection conn = AdminConexiones.obtenerConexion();
+
+      Turno turno = objeto;
+
+      if(this.existsById(turno.getId())){
+        conn = AdminConexiones.obtenerConexion();
+        PreparedStatement pst = null;
+
+         try{
+        pst = conn.prepareStatement(SQL_UPDATE);
+        pst.setDate(1, (Date) turno.getDia());
+        pst.setTime(2, turno.getHora());
+        
+        int resultado = pst.executeUpdate();
+
+        if(resultado == 1){
+          System.out.println("El turno se actualizó correctamente");
+        }else{
+          System.out.println("No se pudo actualizar el turno");
+        }
+
+        pst.close(); 
+        conn.close();
+
+
+      }catch (SQLException e){
+          System.out.println("Error al crear el Statement");
+      }
+
+      }
+
+    }
 
 
   

@@ -9,10 +9,10 @@ public interface Dao <O,K> {
   public List<O> getAll();
 
   public void insert(O objeto) throws SQLException;
-  //public void delete(K id);
-  public void getById(K id);
+  public void delete(K id);
+  public O getById(K id);
   public boolean  existsById(K id);
-
+   public void update(O objeto);
   
   
 

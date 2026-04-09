@@ -7,13 +7,13 @@ import java.util.Date;
 public class Turno {
   private int id;
   private Date dia;
-  private LocalTime hora;
+  private Time hora;
   private int paciente;
   private int consultorio;
 
 
 
-  public Turno(int id, Date dia, LocalTime hora, int paciente, int consultorio){
+  public Turno(int id, Date dia, Time hora, int paciente, int consultorio){
     this.id = id;
     this.dia = dia;
     this.hora = hora;
@@ -41,11 +41,11 @@ public class Turno {
     this.dia = dia;
   }
 
-  public LocalTime getHora() {
+  public Time getHora() {
     return this.hora;
   }
 
-  public void setHora(LocalTime hora) {
+  public void setHora(Time hora) {
     this.hora = hora;
   }
 

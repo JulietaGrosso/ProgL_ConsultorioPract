@@ -19,7 +19,7 @@ public class App
     {
         System.out.println( "Hello World!" );
 
-        Paciente paciente = new Paciente(1, "María", 34823333);
+       /*  Paciente paciente = new Paciente(1, "María", 34823333);
 
         Consultorio consultorio = new Consultorio(1, "Dr. Juan Pérez");
 
@@ -28,7 +28,7 @@ public class App
 
         Turno turno = new Turno(1, fecha, LocalTime.of(13, 30, 00), 1, 1);
 
-        consultorio.agregarTurno("1", turno);
+        consultorio.agregarTurno("1", turno);*/
 
         
         TurnoImpl turnos = new TurnoImpl();
