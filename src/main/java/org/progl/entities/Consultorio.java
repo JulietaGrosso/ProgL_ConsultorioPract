@@ -17,6 +17,10 @@ public class Consultorio {
       this.turnos = new ArrayList<Turno>();
     }
 
+    public Consultorio(){
+
+    }
+
 
   public int getNroConsultorio() {
     return this.nroConsultorio;
