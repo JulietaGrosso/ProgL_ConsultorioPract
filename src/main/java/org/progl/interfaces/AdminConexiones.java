@@ -11,7 +11,7 @@ public interface AdminConexiones {
        String dbCadenaConexion=
         "jdbc:mysql://host.docker.internal:3306/consultorio?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
        String dbUsuario="root";
-       String dbPass="123456";
+       String dbPass="root";
 
        Connection conn = null;
 
