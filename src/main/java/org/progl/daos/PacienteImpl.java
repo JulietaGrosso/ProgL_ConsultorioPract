@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.progl.entities.Paciente;
-import org.progl.entities.Turno;
 import org.progl.interfaces.AdminConexiones;
 import org.progl.interfaces.Dao;
 
