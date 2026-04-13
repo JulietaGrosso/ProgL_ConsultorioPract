@@ -209,7 +209,7 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
          try{
         pst = conn.prepareStatement(SQL_UPDATE);
         pst.setDate(1, (Date) turno.getDia());
-        pst.setTime(2, turno.getHora());
+       // pst.setTime(2, turno.getHora().toString());
         
         int resultado = pst.executeUpdate();
 

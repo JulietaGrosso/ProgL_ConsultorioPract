@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import org.progl.daos.TurnoImpl;
+import org.progl.entities.Consultorio;
+import org.progl.entities.Paciente;
 import org.progl.entities.Turno;
 
 import jakarta.servlet.RequestDispatcher;
@@ -32,7 +34,7 @@ public void doget(HttpServletRequest req, HttpServletResponse res) throws Server
   RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
   
 }
-  
+  /* 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServerException, IOException {
 
@@ -46,21 +48,25 @@ public void doget(HttpServletRequest req, HttpServletResponse res) throws Server
         e.printStackTrace();
       }
       Time hora = Time.valueOf(req.getParameter("hora"));
-      int paciente = Integer.parseInt(req.getParameter("paciente"));
-      int consultorio = Integer.parseInt(req.getParameter("consultorio"));
+      
+        int paciente = Integer.parseInt(req.getParameter("paciente"));
+        int consultorio = Integer.parseInt(req.getParameter("consultorio"));
 
-      Turno turno = new Turno(0, dia, hora, paciente, consultorio);
-      TurnoImpl turnoImpl = new TurnoImpl();
-      try {
-        turnoImpl.insert(turno);
-      } catch (SQLException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-      res.sendRedirect("index.jsp");
- 
-   }
+    
+
+        //Turno turno = new Turno(0, dia, hora, paciente, consultorio);
+       
+        TurnoImpl turnoImpl = new TurnoImpl();
+        try {
+          turnoImpl.insert(turno);
+        } catch (SQLException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        res.sendRedirect("index.jsp");
   
+    }
+    */
   
  
 
