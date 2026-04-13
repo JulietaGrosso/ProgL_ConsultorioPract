@@ -5,7 +5,7 @@
 <%@ include file="headerForm.jsp" %>
 
 <div class="container">
-    <form>
+    <form action="AgregarTurnoServlet" method="post">
       <label>Fecha:</label>
       <input type="date" required>
 
@@ -13,18 +13,18 @@
       <input type="time" required>
 
       <label>Nombre del paciente:</label>
-      <input type="text" placeholder="Ej: Juan Pérez" required>
+      <input type="text" required>
 
       <label>Nombre del doctor:</label>
-      <input type="text" placeholder="Ej: Dra. Gómez" required>
+      <input type="text" required>
 
       <input type="submit" value="Guardar turno">
     </form>
 
     <!-- Botón para volver -->
-    <a href="index.html">
-      <button>Volver</button>
-    </a>
+   <button type="button" onclick="window.location.href='index.jsp'" class="btn-volver">Volver</button>
+
+
   </div>
   
   </script>

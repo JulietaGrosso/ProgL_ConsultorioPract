@@ -27,7 +27,7 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
 
      private static  final String  SQL_GETALL= "SELECT * FROM turno ORDER BY id" ;
      private static final String SQL_GETBYID = "SELECT * FROM turno WHERE id = ?";
-     private static final String SQL_DELETE = "DELETE * FROM turno WHERE id = ?";
+     private static final String SQL_DELETE = "DELETE * FROM turno WHERE dia = ?";
      
     private static  final String  SQL_UPDATE= "UPDATE turno SET " +
         "dia = ?, hora = ?, nro_paciente = ?, nro_consultorio = ? " +
@@ -60,9 +60,9 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
             turno.setDia(rs.getDate("dia"));
             turno.setHora(rs.getTime("hora"));
             PacienteImpl pacienteImpl = new PacienteImpl();
-            turno.setPaciente(pacienteImpl.getById(rs.getInt("nro_paciente")));
+            turno.setPaciente(rs.getInt("nro_paciente"));
             ConsultorioImpl consultorioImpl = new ConsultorioImpl();
-            turno.setConsultorio(consultorioImpl.getById(rs.getInt("nro_consultorio")));
+            turno.setConsultorio(rs.getInt("nro_consultorio"));
             listaTurnos.add(turno);
           }
         
@@ -132,9 +132,9 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
             turno.setDia(rs.getDate("dia"));
             turno.setHora(rs.getTime("hora"));
             PacienteImpl pacienteImpl = new PacienteImpl();
-            turno.setPaciente(pacienteImpl.getById(rs.getInt("nro_paciente")));
+            turno.setPaciente(rs.getInt("nro_paciente"));
             ConsultorioImpl consultorioImpl = new ConsultorioImpl(); 
-            turno.setConsultorio(consultorioImpl.getById(rs.getInt("nro_consultorio")));
+            turno.setConsultorio(rs.getInt("nro_consultorio"));
           }
 
           rs.close();
@@ -175,15 +175,15 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
     
 
     @Override
-    public void delete(Integer id){
+    public void deleteByFecha(Date dia) throws SQLException{
         Connection conn = AdminConexiones.obtenerConexion();
 
         try{
           PreparedStatement pst = conn.prepareStatement(SQL_DELETE);
-          pst.setInt(1, id);
+          pst.setDate(1, dia);
           int resultado = pst.executeUpdate();
           if(resultado == 1){
-              System.out.println("Turno eliminado correctamente");
+              System.out.println("Turnos cancelados correctamente");
           } else {
             System.out.println("No se pudo eliminar el turno");
           }

@@ -7,12 +7,12 @@ public class Turno {
   private int id;
   private Date dia;
   private Time hora;
-  private Paciente paciente;
-  private Consultorio consultorio;
+  private int paciente;
+  private int consultorio;
 
 
 
-  public Turno(int id, Date dia, Time hora, Paciente paciente, Consultorio consultorio){
+  public Turno(int id, Date dia, Time hora, int paciente, int consultorio){
     this.id = id;
     this.dia = dia;
     this.hora = hora;
@@ -49,19 +49,19 @@ public class Turno {
   }
 
 
-  public Paciente getPaciente() {
+  public int getPaciente() {
     return this.paciente;
   }
 
-  public void setPaciente(Paciente paciente) {
+  public void setPaciente(int paciente) {
     this.paciente = paciente;
   }
 
-  public Consultorio getConsultorio() {
+  public int getConsultorio() {
     return this.consultorio;
   }
 
-  public void setConsultorio(Consultorio consultorio) {
+  public void setConsultorio(int consultorio) {
     this.consultorio = consultorio;
   }
 

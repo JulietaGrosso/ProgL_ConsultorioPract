@@ -30,11 +30,10 @@ public void doget(HttpServletRequest req, HttpServletResponse res) throws Server
   
   req.setAttribute("mensaje", "Turno agregado exitosamente");
   
-  
   RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
   
 }
-  /* 
+   
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServerException, IOException {
 
@@ -47,26 +46,26 @@ public void doget(HttpServletRequest req, HttpServletResponse res) throws Server
         // TODO Auto-generated catch block
         e.printStackTrace();
       }
-      Time hora = Time.valueOf(req.getParameter("hora"));
-      
+        Time hora = Time.valueOf(req.getParameter("hora"));
+        
         int paciente = Integer.parseInt(req.getParameter("paciente"));
         int consultorio = Integer.parseInt(req.getParameter("consultorio"));
 
-    
+        
+        Turno turno = new Turno(0, dia, hora, paciente, consultorio);
 
-        //Turno turno = new Turno(0, dia, hora, paciente, consultorio);
        
         TurnoImpl turnoImpl = new TurnoImpl();
         try {
           turnoImpl.insert(turno);
+          res.sendRedirect("index.jsp");
         } catch (SQLException e) {
-          // TODO Auto-generated catch block
           e.printStackTrace();
         }
-        res.sendRedirect("index.jsp");
+        
   
     }
-    */
+    
   
  
 

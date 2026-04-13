@@ -1,6 +1,7 @@
 package org.progl.daos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -99,6 +100,7 @@ public class ConsultorioImpl implements Dao<Consultorio, Integer>, AdminConexion
       }
     }
 
+    /* 
     @Override
     public void delete(Integer nroConsultorio) {
        Connection conn = AdminConexiones.obtenerConexion();
@@ -120,7 +122,7 @@ public class ConsultorioImpl implements Dao<Consultorio, Integer>, AdminConexion
         }
         
     }
-
+*/
 
     @Override
     public void update(Consultorio objeto) {
@@ -170,6 +172,12 @@ public class ConsultorioImpl implements Dao<Consultorio, Integer>, AdminConexion
     public boolean existsById(Integer id) {
       // TODO Auto-generated method stub
       throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+    }
+
+    @Override
+    public void deleteByFecha(Date dia) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'deleteByFecha'");
     }
 
 

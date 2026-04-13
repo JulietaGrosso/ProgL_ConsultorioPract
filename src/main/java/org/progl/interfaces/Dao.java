@@ -1,5 +1,6 @@
 package org.progl.interfaces;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface Dao <O,K> {
 
   public List<O> getAll();
   public void insert(O objeto) throws SQLException;
-  public void delete(K id);
+   void deleteByFecha(Date k)  throws SQLException;
   public O getById(K id);
   public boolean  existsById(K id);
    public void update(O objeto);

@@ -48,6 +48,10 @@ body {
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .turno {
@@ -55,8 +59,9 @@ body {
       padding: 10px 0;
       text-align: left;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      align-items:flex-start;
     }
 
     .turno:last-child {
@@ -146,7 +151,16 @@ body {
       background-color: #45a049;
     }
 
+    .btn-volver {
+  background-color: #4CAF50; 
+  color: white;                
+  border: none;                
+  padding: 10px 20px;          
+  border-radius: 5px;          
+  cursor: pointer;            
+  font-size: 16px;
+}
 
-
-
-   
+.btn-volver:hover {
+  background-color: #316d33;  
+}

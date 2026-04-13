@@ -1,6 +1,7 @@
 package org.progl.daos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -166,7 +167,7 @@ public class PacienteImpl implements Dao<Paciente, Integer>, AdminConexiones {
       return existe;
     }
     
-
+/* 
     @Override
     public void delete(Integer nroPaciente){
         Connection conn = AdminConexiones.obtenerConexion();
@@ -187,7 +188,7 @@ public class PacienteImpl implements Dao<Paciente, Integer>, AdminConexiones {
           System.out.println("No se pudo eliminar el paciente. Error " + e.getMessage());
         }
         
-    }
+    }*/
 
 
     @Override
@@ -225,6 +226,13 @@ public class PacienteImpl implements Dao<Paciente, Integer>, AdminConexiones {
 
       }
 
+    }
+
+
+    @Override
+    public void deleteByFecha(Date dia) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'deleteByFecha'");
     }
 
 

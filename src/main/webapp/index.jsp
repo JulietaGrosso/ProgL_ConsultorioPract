@@ -16,41 +16,47 @@
 
     <!-- Lista de turnos -->
     <div id="listaTurnos" class="turnos" style="display:none;">
-      <div class="turno" data-fecha="12/04/2026">
-        <div>
-          <div class="fecha">12/04/2026 - 10:00</div>
-          <div class="detalle">Paciente: Juan Pérez | Doctor: Dra. Gómez</div>
-        </div>
-        <div class="acciones">
-         
-          <button onclick="cancelarDia('12/04/2026')">Cancelar</button>
-        </div>
-      </div>
-     
+      
+      <c:forEach var="turno" items="${listaTurnos}"
+      <div class="turno">
+          <div>
+            <div class="dia">${turno.dia}</div>
+            <div class="detalle">Hora: ${turno.hora}</div>
+            <div class="detalle">Paciente: ${turno.paciente}</div>
+            <div class="detalle">Medico: ${turno.consultorio}</div>
+
+          </div>
+            
           <div class="acciones-globales">
             <label>Eliminar turnos por fecha:</label>
-            <input type="date" id="fechaEliminar">
-            <button onclick="eliminarPorFecha()">Eliminar</button>
+              <input type="date" id="fechaEliminar" required>
+                 <button type="button" onclick="eliminarPorFecha()">Eliminar</button>
           </div>
+    </div>
+        
     </div>
   </div>
 
  
 
 
-<script>
-  function eliminarPorFecha() {
-    const fechaInput = document.getElementById('fechaEliminar').value;
-    if (!fechaInput) return;
+  <script>
+        async function eliminarPorFecha() {
+            const fecha = document.getElementById("fechaEliminar").value;
+            if (!fecha) return;
 
-    // Convertir formato yyyy-mm-dd a dd/mm/yyyy
-    const partes = fechaInput.split("-");
-    const fechaFormateada = partes[2] + "/" + partes[1] + "/" + partes[0];
+            const response = await fetch("TurnoServlet?dia=" + fecha, {
+                method: "DELETE"
+            });
 
-    const turnos = document.querySelectorAll(`.turno[data-fecha='${fechaFormateada}']`);
-    turnos.forEach(t => t.remove());
-  }
-</script>
+            if (response.ok) {
+                alert("Turnos eliminados correctamente");
+                window.location.href = "index.jsp"; // redirige al index
+            } else {
+                alert("Error al eliminar los turnos");
+            }
+        }
+  </script>
   
 
 </body>
