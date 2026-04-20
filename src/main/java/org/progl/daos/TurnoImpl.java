@@ -60,9 +60,9 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
             turno.setDia(rs.getDate("dia"));
             turno.setHora(rs.getTime("hora"));
             PacienteImpl pacienteImpl = new PacienteImpl();
-            turno.setPaciente(rs.getInt("nro_paciente"));
+            turno.setPaciente(pacienteImpl.getById(rs.getInt("paciente")));
             ConsultorioImpl consultorioImpl = new ConsultorioImpl();
-            turno.setConsultorio(rs.getInt("nro_consultorio"));
+            turno.setConsultorio(consultorioImpl.getById(rs.getInt("consultorio")));
             listaTurnos.add(turno);
           }
         
@@ -132,9 +132,10 @@ public class TurnoImpl implements Dao<Turno,Integer>, AdminConexiones{
             turno.setDia(rs.getDate("dia"));
             turno.setHora(rs.getTime("hora"));
             PacienteImpl pacienteImpl = new PacienteImpl();
-            turno.setPaciente(rs.getInt("nro_paciente"));
-            ConsultorioImpl consultorioImpl = new ConsultorioImpl(); 
-            turno.setConsultorio(rs.getInt("nro_consultorio"));
+            turno.setPaciente(pacienteImpl.getById(rs.getInt("paciente")));
+            ConsultorioImpl consultorioImpl = new ConsultorioImpl();
+            turno.setConsultorio(consultorioImpl.getById(rs.getInt("consultorio")));
+            
           }
 
           rs.close();
